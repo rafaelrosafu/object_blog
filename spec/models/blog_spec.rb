@@ -1,5 +1,5 @@
 # -*- encoding : utf-8 -*-
-require 'minitest/autorun'
+require_relative '../spec_helper_lite'
 require_relative '../../app/models/blog'
 
 require 'ostruct'
