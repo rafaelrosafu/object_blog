@@ -4,6 +4,8 @@ require_relative '../spec_helper_lite'
 stub_module 'ActiveModel::Conversion'
 stub_module 'ActiveModel::Naming'
 
+require 'date'
+
 require_relative '../../app/models/post'
 
 describe Post do
@@ -52,5 +54,28 @@ describe Post do
     subject = Post.new(:title => "mytitle", :body => "mybody")
     subject.title.must_equal "mytitle"
     subject.body.must_equal "mybody"
+  end
+  
+  describe "#published_at" do
+    describe 'before publishing' do
+      it 'should be blank' do
+        @subject.published_at.must_be_nil
+      end
+    end
+    
+    describe 'after publishing' do
+      before do
+        @clock = stub!
+        @now = DateTime.parse("2011-09-11T02:56")
+        stub(@clock).now(){@now}
+
+        @subject.blog = stub!
+        @subject.publish(@clock)
+      end
+
+      it 'should be a datetime' do
+        @subject.published_at.must_equal(@now)
+      end
+    end
   end
 end
