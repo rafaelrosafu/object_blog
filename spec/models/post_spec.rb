@@ -39,8 +39,14 @@ describe Post do
     end
 
     it "should add the post to the blog" do
-      @blog.expect :add_entry, nil, [@subject]
+      @blog.expect :add_post, nil, [@subject]
       @subject.publish
     end
+  end
+  
+  it "should support setting attributes in the initializer" do
+    subject = Post.new(:title => "mytitle", :body => "mybody")
+    subject.title.must_equal "mytitle"
+    subject.body.must_equal "mybody"
   end
 end

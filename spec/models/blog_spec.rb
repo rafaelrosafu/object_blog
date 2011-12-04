@@ -26,5 +26,21 @@ describe Blog do
     it "should set the post's blog reference to itself" do
       @subject.new_post.blog.must_equal(@subject)
     end
+
+    it "should accept an attribute hash on behalf of the post maker" do
+      post_maker = MiniTest::Mock.new
+      post_maker.expect(:call, @new_post, [{:x => 42, :y => 'z'}])
+      @subject.post_maker = post_maker
+      @subject.new_post(:x => 42, :y => 'z')
+      post_maker.verify
+    end  
+  end
+  
+  describe '#add_post' do
+    it 'should add a new post to the blog' do
+      post = Object.new
+      @subject.add_post post
+      @subject.posts.must_include post
+    end
   end
 end
