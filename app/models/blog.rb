@@ -1,5 +1,4 @@
 class Blog
-  attr_reader :posts
   attr_writer :post_maker
 
   def initialize
@@ -12,6 +11,10 @@ class Blog
 
   def subtitle
     "The trusted source for drying paint news & opinion"
+  end
+  
+  def posts
+    @posts.sort {|a, b| b.published_at <=> a.published_at}.take(10)
   end
 
   def new_post(*args)
