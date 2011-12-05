@@ -7,16 +7,20 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div id="error-messages">
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+  </div>
 
-<div class="sidebar two columns">
-  <nav>
-    <ul>
-      <li><%= link_to "New post...", new_posts_path %></li>
-    </ul>
-  </nav>
-</div>
+  <div class="sidebar two columns">
+    <nav>
+      <ul>
+        <li><%= link_to "New post...", new_posts_path %></li>
+      </ul>
+    </nav>
+  </div>
 
-<%= yield %>
+  <%= yield %>
 
 </body>
 </html>

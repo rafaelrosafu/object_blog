@@ -2,8 +2,11 @@
 class Post
   extend ActiveModel::Naming
   include ActiveModel::Conversion
+  include ActiveModel::Validations
 
   attr_accessor :blog, :title, :body, :published_at
+
+  validates :title, :presence => true
   
   def initialize(attributes = {})
     attributes.each do |key, value|
@@ -12,6 +15,7 @@ class Post
   end
 
   def publish(clock = DateTime)
+    return false unless self.valid?
     self.published_at = clock.now
     blog.add_post self
   end
