@@ -4,7 +4,7 @@ class Post
   include ActiveModel::Conversion
   include ActiveModel::Validations
 
-  attr_accessor :blog, :title, :body, :published_at
+  attr_accessor :blog, :title, :body, :published_at, :image_url
 
   validates :title, :presence => true
   
@@ -22,5 +22,9 @@ class Post
   
   def persisted?
     false
+  end
+  
+  def picture?
+    image_url.present?
   end
 end

@@ -11,7 +11,14 @@
   </div>  
   <% end %>
 
+  <%= label :title, "Title:" %>
   <%= f.text_field :title %>
+
+  <%= label :body, "Body:" %>
   <%= f.text_area :body %>
+
+  <%= label :image_url, "Picture URL:" %>
+  <%= f.text_field :image_url %>
+  
   <%= f.submit %>
 <% end %>

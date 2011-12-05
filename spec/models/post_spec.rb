@@ -110,4 +110,16 @@ describe Post do
       end
     end
   end
+
+  describe "#picture?" do
+    it "should be true when the post has a picture URL" do
+      @subject.image_url = "http://example.org/foo.png"
+      assert(@subject.picture?)
+    end
+
+    it "should be false when the post has no picture URL" do
+      @subject.image_url = ""
+      refute(@subject.picture?)
+    end
+  end
 end
